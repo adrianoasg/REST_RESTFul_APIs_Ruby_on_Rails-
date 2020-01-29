@@ -6,6 +6,9 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
 
     render json: @contacts # igual a @contacts.as_json.to_json
+
+    # render json: @contacts, methods: :birthdate_br
+    # render json: @contacts, methods: [:hello, :i18n]
     # render json: @contacts.map { |contact| contact.attributes.merge({ author: "Jackson" })}
     # render json: @contacts, methods: :author - metodo no model
 
@@ -13,7 +16,9 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    render json: @contact #, include: :kind
+    # render json: @contact #, include: :kind
+
+    render json: @contact.to_br
     # render json: @contact.attributes.merge({ author: "Jackson" })
   end
 
